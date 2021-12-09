@@ -1,6 +1,8 @@
 import { company, address } from 'faker';
 
-export default class Company {
+import { Mappable } from './CustomMap';
+
+export default class Company implements Mappable {
   name: string;
   catchPhrase: string;
   location: {
