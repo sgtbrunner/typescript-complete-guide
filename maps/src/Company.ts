@@ -18,4 +18,13 @@ export default class Company implements Mappable {
       lng: parseFloat(address.longitude()),
     };
   }
+
+  markerContent(): string {
+    return `
+      <div>
+        <h2>Company name: ${this.name}</h2>
+        <h3>Mantra: ${this.catchPhrase}</h3>
+      </div>
+    `;
+  }
 }

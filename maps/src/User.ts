@@ -16,4 +16,10 @@ export default class User implements Mappable {
       lng: parseFloat(address.longitude()),
     };
   }
+
+  markerContent(): string {
+    return `
+      <h2>User name: ${this.name}</h2>
+    `;
+  }
 }

@@ -3,11 +3,11 @@
 // instructions to every other class on
 // how they can be an argument to "addMarker"
 export interface Mappable {
-  name: string;
   location: {
     lat: number;
     lng: number;
   };
+  markerContent(): string;
 }
 
 export default class CustomMap {
@@ -24,10 +24,17 @@ export default class CustomMap {
   }
 
   addMarker(mappable: Mappable): void {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: mappable.location,
-      title: mappable.name,
+    });
+
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent(),
+      });
+
+      infoWindow.open(this.googleMap, marker);
     });
   }
 }
